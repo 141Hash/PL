@@ -1,51 +1,120 @@
 import ply.lex as lex
+import sys
 
-tokens = (
+tokens = [
+    'BEGD',
+    'BEGI',
+    'READ',
+    'WRITE',
     'ID',
     'INT',
     'NUM',
-    'VIRG',
-    'PV',
-    'PD',
-    'PE',
-    'MAIOR',
     'IGUAL',
-    'MENOR',
+    'DIF',
     'MAIORI',
     'MENORI',
-    'SOMA',
-    'SUBTRACAO',
-    'MULTIPLICACAO',
-    'DIVISAO',
-    'CONJUNCAO',
-    'DISJUNCAO',
-    'RESTODI'
-)
+    'AND',
+    'OR',
+    'NOT',
+    'IF',
+    'ELSE',
+    'FOR',
+    'PRINT',
+    'WHILE',
+    'REPEAT',
+    'UNTIL',
+    'STRING'
+]
 
-t_ID = r'\w+'
-t_INT = r'Int'
+literals = ['+', '-', '*', '/', '=', '{', '}', '(', ')', '>', '<', ',', ';', '%', '[', ']']
+
+def t_INT(t):
+    r'int'
+    return t
 
 def t_NUM(t):
     r'\d+'
-    t.value = int(t.value)
     return t
 
-t_PV = r';'
-t_VIRG = r','
-t_PD = r'\)'
-t_PE = r'\('
-t_MAIOR = r'>'
-t_MENOR = r'<'
-t_IGUAL = r'=='
-t_MAIORI = r'>='
-t_MENORI = r'<='
-t_SOMA = r'\+'
-t_SUBTRACAO = r'-'
-t_MULTIPLICACAO = r'\*'
-t_DIVISAO = r'/'
-t_CONJUNCAO = r'&&'
-t_DISJUNCAO = r'\|\|'
-t_RESTODI = r'%'
+def t_BEGD(t):
+    r'BEGD'
+    return t
+
+def t_BEGI(t):
+     r'BEGI'
+     return t
+
+def t_READ(t):
+     r'READ'
+     return t
+
+def t_WRITE(t):
+     r'WRITE'
+     return t
+
+def t_PRINT(t):
+     r'PRINT'
+     return t
+
+def t_WHILE(t):
+     r'WHILE'
+     return t
+
+def t_REPEAT(t):
+     r'REPEAT'
+     return t
+
+def t_UNTIL(t):
+     r'UNTIL'
+     return t
+
+def t_IF(t):
+     r'IF'
+     return t
+
+def t_ELSE(t):
+     r'ELSE'
+     return t
+     
+def t_FOR(t):
+    r'FOR'
+    return t
+
+def t_IGUAL(t):
+     r'=='
+     return t
+
+def t_DIF(t):
+     r"!="
+     return t
+
+def t_MAIORI(t):
+     r'>='
+     return t
+
+def t_MENORI(t):
+    r'<='
+    return t
+
+def t_AND(t): 
+    r'&&'
+    return t
+
+def t_OR(t):
+     r'\|\|'
+     return t
+
+def t_NOT(t): 
+    r'!'
+    return t
+
+def t_STRING(t): 
+    r'"(.*?)"'
+    return t
+
+def t_ID(t):
+    r'\w+'
+    return t
 
 t_ignore = ' \r\n\t'
 
@@ -54,6 +123,8 @@ def t_error(t):
     t.lexer.skip(1)
 
 lexer = lex.lex()
+
+
 
 
 
