@@ -163,7 +163,7 @@ def p_instrucao_repeat(p):
     "Instrucao : REPEAT '{' Instrucoes '}' UNTIL '(' Logica ')'"
     p.parser.repeat_count += 1
     number = str(p.parser.repeat_count)
-    p[0] = "inicrepeat" + number + ":\n" + p[7] + "jz fimrepeat" + number + "\n" + p[3] + "jump inicrepeat" + number + "\n" + "fimrepeat" + number + ":\n"
+    p[0] = "inicrepeat" + number + ":\n" + p[3] + p[7] + "jz inicrepeat" + number + "\n" + "jump fimrepeat" + number + "\n" + "fimrepeat" + number + ":\n"
 
 def p_logica_and(p):
     "Logica : Logica AND COND"
